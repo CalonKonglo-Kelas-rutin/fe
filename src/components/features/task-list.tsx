@@ -1,8 +1,8 @@
 'use client';
 
-import { useTasks } from '@/hooks/useTasks';
-import { TaskCard } from './TaskCard';
-import { TaskForm } from './TaskForm';
+import { useTasks } from '@/hooks/use-task';
+import { TaskCard } from './task-card';
+import { TaskForm } from './task-form';
 
 export function TaskList() {
   const { tasks, loading, error, createTask, updateTask, deleteTask } = useTasks();

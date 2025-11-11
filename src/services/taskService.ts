@@ -12,24 +12,24 @@ const tasks: Task[] = [
     title: 'Setup Project Structure',
     description: 'Create a clean and simple project structure',
     status: 'completed',
-    createdAt: new Date('2025-11-10'),
-    updatedAt: new Date('2025-11-10'),
+    createdAt: '2025-11-10T00:00:00.000Z',
+    updatedAt: '2025-11-10T00:00:00.000Z',
   },
   {
     id: '2',
     title: 'Build Task Feature',
     description: 'Implement task management functionality',
     status: 'in-progress',
-    createdAt: new Date('2025-11-11'),
-    updatedAt: new Date('2025-11-11'),
+    createdAt: '2025-11-11T00:00:00.000Z',
+    updatedAt: '2025-11-11T00:00:00.000Z',
   },
   {
     id: '3',
     title: 'Add Styling',
     description: 'Style the components with Tailwind CSS',
     status: 'pending',
-    createdAt: new Date('2025-11-11'),
-    updatedAt: new Date('2025-11-11'),
+    createdAt: '2025-11-11T00:00:00.000Z',
+    updatedAt: '2025-11-11T00:00:00.000Z',
   },
 ];
 
@@ -51,13 +51,14 @@ export const taskService = {
   async createTask(input: CreateTaskInput): Promise<Task> {
     await new Promise(resolve => setTimeout(resolve, 100));
 
+    const now = new Date().toISOString();
     const newTask: Task = {
       id: Date.now().toString(),
       title: input.title,
       description: input.description,
       status: 'pending',
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      createdAt: now,
+      updatedAt: now,
     };
 
     tasks.push(newTask);
@@ -76,7 +77,7 @@ export const taskService = {
     tasks[index] = {
       ...tasks[index],
       ...input,
-      updatedAt: new Date(),
+      updatedAt: new Date().toISOString(),
     };
 
     return tasks[index];
