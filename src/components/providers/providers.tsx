@@ -7,7 +7,15 @@ import { useState } from 'react';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   // Create QueryClient inside the component to ensure it's only created on the client
-  const [queryClient] = useState(() => new QueryClient());
+  const [queryClient] = useState(() => new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+        retry: 1,
+        staleTime: 5000,
+      },
+    },
+  }));
 
   return (
     <WagmiProvider config={wagmiConfig}>
