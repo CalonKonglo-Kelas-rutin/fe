@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Task Management App",
-  description: "A simple task manager with clean architecture",
+  title: "Chain Credit",
+  description: "A decentralized credit scoring platform leveraging blockchain technology to provide transparent and secure credit assessments.",
 };
 
 export default async function RootLayout({
