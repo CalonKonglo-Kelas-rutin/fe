@@ -36,8 +36,8 @@ export function NavUser() {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
-            variant="outline"
-            className="gap-2"
+            variant="secondary"
+            className="gap-2 border-primary/20 hover:bg-primary/10"
           >
             <Avatar className="h-6 w-6 rounded-lg">
               <AvatarFallback className="rounded-lg bg-primary/10">

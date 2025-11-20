@@ -1,11 +1,13 @@
-'use client'
+"use client";
 
-import { wagmiAdapter, projectId } from '@/config'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { createAppKit } from '@reown/appkit/react'
-import { mainnet, liskSepolia } from '@reown/appkit/networks'
-import { type ReactNode } from 'react'
-import { cookieToInitialState, WagmiProvider, type Config } from 'wagmi'
+import { wagmiAdapter, projectId } from "@/config";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { createAppKit } from "@reown/appkit/react";
+import { mainnet, liskSepolia } from "@reown/appkit/networks";
+import { type ReactNode } from "react";
+import { cookieToInitialState, WagmiProvider, type Config } from "wagmi";
+import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "./theme-provider";
 
 // Set up queryClient with optimized defaults
 const queryClient = new QueryClient({
@@ -15,19 +17,19 @@ const queryClient = new QueryClient({
       refetchOnWindowFocus: false,
     },
   },
-})
+});
 
 if (!projectId) {
-  throw new Error('Project ID is not defined')
+  throw new Error("Project ID is not defined");
 }
 
 // Set up metadata
 const metadata = {
-  name: 'Chain Credit',
-  description: 'Chain Credit DApp',
-  url: process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
-  icons: ['https://avatars.githubusercontent.com/u/179229932']
-}
+  name: "Chain Credit",
+  description: "Chain Credit DApp",
+  url: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
+  icons: ["https://avatars.githubusercontent.com/u/179229932"],
+};
 
 createAppKit({
   adapters: [wagmiAdapter],
@@ -37,17 +39,37 @@ createAppKit({
   metadata: metadata,
   features: {
     analytics: false,
-  }
-})
+  },
+});
 
-export function Providers({ children, cookies }: { children: ReactNode; cookies: string | null }) {
-  const initialState = cookieToInitialState(wagmiAdapter.wagmiConfig as Config, cookies)
+export function Providers({
+  children,
+  cookies,
+}: {
+  children: ReactNode;
+  cookies: string | null;
+}) {
+  const initialState = cookieToInitialState(
+    wagmiAdapter.wagmiConfig as Config,
+    cookies
+  );
 
   return (
-    <WagmiProvider config={wagmiAdapter.wagmiConfig as Config} initialState={initialState}>
+    <WagmiProvider
+      config={wagmiAdapter.wagmiConfig as Config}
+      initialState={initialState}
+    >
       <QueryClientProvider client={queryClient}>
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+          <Toaster />
+        </ThemeProvider>
       </QueryClientProvider>
     </WagmiProvider>
-  )
+  );
 }
