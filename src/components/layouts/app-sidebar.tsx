@@ -1,7 +1,15 @@
 "use client";
 
 import * as React from "react";
-import { LayoutGrid } from "lucide-react";
+import { 
+  LayoutGrid, 
+  Package, 
+  Wallet, 
+  CreditCard,
+  Plus,
+  Clock,
+  CheckCircle2
+} from "lucide-react";
 import { NavMain, NavBrand } from "@/components/layouts/nav";
 import {
   Sidebar,
@@ -10,7 +18,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 
-// This is sample data.
+// Navigation data for RWA Platform
 const data = {
   user: {
     name: "shadcn",
@@ -22,6 +30,36 @@ const data = {
       title: "Dashboard",
       url: "/",
       icon: LayoutGrid,
+    },
+    {
+      title: "Register Asset",
+      url: "/assets/register",
+      icon: Plus,
+    },
+    {
+      title: "Asset Status",
+      url: "/assets/status",
+      icon: Clock,
+    },
+    {
+      title: "Verification",
+      url: "/assets/verification",
+      icon: CheckCircle2,
+    },
+    {
+      title: "Tokenize",
+      url: "/assets/tokenize",
+      icon: Package,
+    },
+    {
+      title: "Wallet",
+      url: "/wallet",
+      icon: Wallet,
+    },
+    {
+      title: "Repayment",
+      url: "/repayment",
+      icon: CreditCard,
     },
   ],
 };
